@@ -116,6 +116,10 @@ apis:
       - Trade flow research
       - Transportation policy development
 common:
+  - type: GitHubOrganization
+    url: https://github.com/dotbts
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bureau-of-transportation-statistics-bts
   - type: Website
     url: https://www.bts.gov
   - type: Portal

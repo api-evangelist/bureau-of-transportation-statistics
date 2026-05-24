@@ -1,0 +1,207 @@
+openapi: 3.1.0
+info:
+  title: BTS Open Data SODA API
+  version: "2.1"
+  description: |
+    The Bureau of Transportation Statistics (BTS) publishes its open data
+    catalog through a Socrata-hosted portal at data.bts.gov. All datasets
+    are accessible via the Socrata Open Data API (SODA) 2.1, with each
+    dataset addressable by its four-by-four identifier (e.g., `abcd-1234`).
+
+    Authentication is optional but recommended via the `X-App-Token`
+    header to receive higher rate limits.
+  contact:
+    name: Bureau of Transportation Statistics
+    url: https://data.bts.gov/
+  license:
+    name: U.S. Government Work
+    url: https://www.usa.gov/government-works
+servers:
+  - url: https://data.bts.gov
+    description: BTS Socrata Open Data portal
+security:
+  - {}
+  - appToken: []
+tags:
+  - name: Resource
+    description: Dataset resource queries via SoQL
+  - name: Metadata
+    description: Dataset and view metadata
+paths:
+  /resource/{datasetId}.json:
+    get:
+      tags: [Resource]
+      summary: Query a BTS dataset using SoQL
+      description: |
+        Retrieve rows from a BTS dataset. Supports SoQL (Socrata Query
+        Language) parameters for filtering, projection, ordering, and
+        pagination. Replace `{datasetId}` with the dataset's four-by-four
+        identifier as listed at https://data.bts.gov/browse.
+      operationId: queryDataset
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          description: Four-by-four dataset identifier (e.g., `gxum-mjt3`).
+          schema: { type: string, pattern: "^[a-z0-9]{4}-[a-z0-9]{4}$" }
+        - name: $select
+          in: query
+          description: Comma-separated list of columns to return.
+          schema: { type: string }
+        - name: $where
+          in: query
+          description: SoQL filter expression.
+          schema: { type: string }
+        - name: $order
+          in: query
+          description: Sort order, e.g. `column ASC`.
+          schema: { type: string }
+        - name: $group
+          in: query
+          schema: { type: string }
+        - name: $having
+          in: query
+          schema: { type: string }
+        - name: $limit
+          in: query
+          description: Maximum number of rows to return (default 1000, max 50000).
+          schema: { type: integer, default: 1000, maximum: 50000 }
+        - name: $offset
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: $q
+          in: query
+          description: Full-text search across the dataset.
+          schema: { type: string }
+        - name: $$app_token
+          in: query
+          description: Optional app token as a query parameter.
+          schema: { type: string }
+      responses:
+        "200":
+          description: Array of row objects with dataset-specific keys.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+        "400":
+          description: Invalid SoQL expression.
+        "404":
+          description: Dataset not found.
+        "429":
+          description: Rate limit exceeded.
+  /resource/{datasetId}.csv:
+    get:
+      tags: [Resource]
+      summary: Query a BTS dataset as CSV
+      operationId: queryDatasetCsv
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: $select
+          in: query
+          schema: { type: string }
+        - name: $where
+          in: query
+          schema: { type: string }
+        - name: $limit
+          in: query
+          schema: { type: integer }
+        - name: $offset
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: CSV result set
+          content:
+            text/csv:
+              schema: { type: string }
+  /resource/{datasetId}.geojson:
+    get:
+      tags: [Resource]
+      summary: Query a BTS geospatial dataset as GeoJSON
+      operationId: queryDatasetGeoJson
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: $where
+          in: query
+          schema: { type: string }
+        - name: $limit
+          in: query
+          schema: { type: integer }
+      responses:
+        "200":
+          description: GeoJSON FeatureCollection
+          content:
+            application/vnd.geo+json:
+              schema:
+                type: object
+  /api/views/{datasetId}.json:
+    get:
+      tags: [Metadata]
+      summary: Retrieve dataset metadata
+      operationId: getDatasetMetadata
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Dataset metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/catalog/v1:
+    get:
+      tags: [Metadata]
+      summary: Search the BTS data catalog
+      operationId: searchCatalog
+      parameters:
+        - name: q
+          in: query
+          schema: { type: string }
+        - name: domains
+          in: query
+          schema: { type: string, default: "data.bts.gov" }
+        - name: only
+          in: query
+          description: Resource type filter (datasets, charts, maps).
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 10 }
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0 }
+      responses:
+        "200":
+          description: Catalog search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                  resultSetSize:
+                    type: integer
+components:
+  securitySchemes:
+    appToken:
+      type: apiKey
+      in: header
+      name: X-App-Token
+      description: Socrata application token from data.bts.gov developer registration.

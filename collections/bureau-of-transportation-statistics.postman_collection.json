@@ -1,0 +1,804 @@
+{
+  "item": [
+    {
+      "id": "d662c457-a746-48fd-b8f2-d147a9fa609d",
+      "name": "Resource",
+      "description": {
+        "content": "Dataset resource queries via SoQL",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a45e0b4-6830-43be-a204-5663a7a65e9b",
+          "name": "Query a BTS dataset using SoQL",
+          "request": {
+            "name": "Query a BTS dataset using SoQL",
+            "description": {
+              "content": "Retrieve rows from a BTS dataset. Supports SoQL (Socrata Query\nLanguage) parameters for filtering, projection, ordering, and\npagination. Replace `{datasetId}` with the dataset's four-by-four\nidentifier as listed at https://data.bts.gov/browse.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "{{datasetId}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of columns to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$where",
+                  "value": "<string>",
+                  "description": "SoQL filter expression."
+                },
+                {
+                  "disabled": false,
+                  "key": "$order",
+                  "value": "<string>",
+                  "description": "Sort order, e.g. `column ASC`."
+                },
+                {
+                  "disabled": false,
+                  "key": "$group",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$having",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$limit",
+                  "value": "1000",
+                  "description": "Maximum number of rows to return (default 1000, max 50000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "$q",
+                  "value": "<string>",
+                  "description": "Full-text search across the dataset."
+                },
+                {
+                  "disabled": false,
+                  "key": "$$app_token",
+                  "value": "<string>",
+                  "description": "Optional app token as a query parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16a30c19-6906-4742-ac2e-adcf65185e83",
+              "name": "Array of row objects with dataset-specific keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$having",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$$app_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 4591.772073427208,\n    \"key_1\": 6202,\n    \"key_2\": true\n  },\n  {\n    \"key_0\": 8948\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ed65dd8-853b-4d8b-a762-ce25f619c722",
+              "name": "Invalid SoQL expression.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$having",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$$app_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84399e77-e878-4208-97b9-061cc52c111b",
+              "name": "Dataset not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$having",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$$app_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d5003e0e-9e4c-4a87-9a34-b2cfd6fcfa50",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$having",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$$app_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42981b06-e53b-4f37-a42c-ff7390835eb7",
+          "name": "Query a BTS dataset as CSV",
+          "request": {
+            "name": "Query a BTS dataset as CSV",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "{{datasetId}}.csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$where",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b170c9c-dbf8-4de9-9841-bb54cbc40d13",
+              "name": "CSV result set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8cae8511-41ef-4e3d-97cb-2ef31a1b13f4",
+          "name": "Query a BTS geospatial dataset as GeoJSON",
+          "request": {
+            "name": "Query a BTS geospatial dataset as GeoJSON",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "{{datasetId}}.geojson"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$where",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.geo+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d0aca5c-e7b7-4e4c-a535-52601bea0e6c",
+              "name": "GeoJSON FeatureCollection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "{{datasetId}}.geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.geo+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.geo+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "100ccd39-5d60-4e6d-8914-11a526cead4d",
+      "name": "Metadata",
+      "description": {
+        "content": "Dataset and view metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9fb7cd2-b95f-452c-867b-10c2e3f813d1",
+          "name": "Retrieve dataset metadata",
+          "request": {
+            "name": "Retrieve dataset metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "views",
+                "{{datasetId}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb3ea623-1a67-4824-9016-5de30de29bb0",
+              "name": "Dataset metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "views",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 1560,\n  \"key_1\": \"string\",\n  \"key_2\": 8879.482527623944,\n  \"key_3\": 4548\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dd07794-2bef-4ce9-8955-65de5c7aee26",
+          "name": "Search the BTS data catalog",
+          "request": {
+            "name": "Search the BTS data catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "catalog",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "data.bts.gov"
+                },
+                {
+                  "disabled": false,
+                  "key": "only",
+                  "value": "<string>",
+                  "description": "Resource type filter (datasets, charts, maps)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "270810cc-edf7-4113-8772-4777bb670327",
+              "name": "Catalog search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "catalog",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "data.bts.gov"
+                    },
+                    {
+                      "key": "only",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultSetSize\": 8311\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.bts.gov",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "datasetId"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "eed184b8-7ce6-4b46-b473-3a1df749baa1",
+    "name": "BTS Open Data SODA API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bureau of Transportation Statistics (BTS) publishes its open data\ncatalog through a Socrata-hosted portal at data.bts.gov. All datasets\nare accessible via the Socrata Open Data API (SODA) 2.1, with each\ndataset addressable by its four-by-four identifier (e.g., `abcd-1234`).\n\nAuthentication is optional but recommended via the `X-App-Token`\nheader to receive higher rate limits.\n\n\nContact Support:\n Name: Bureau of Transportation Statistics",
+      "type": "text/plain"
+    }
+  }
+}

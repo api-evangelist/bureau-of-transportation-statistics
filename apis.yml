@@ -69,7 +69,7 @@ apis:
       - url: https://www.transtats.bts.gov/
         type: Portal
       - url: https://www.transtats.bts.gov/ONTIME/
-        type: Tool
+        type: Tools
     description: >-
       TranStats is BTS's aviation and transportation statistics database
       providing flight on-time performance data, carrier and airport snapshots,

@@ -116,6 +116,10 @@ apis:
       - Trade flow research
       - Transportation policy development
 common:
+  - type: DomainSecurity
+    url: security/bureau-of-transportation-statistics-domain-security.yml
+  - type: Authentication
+    url: authentication/bureau-of-transportation-statistics-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/dotbts
   - type: LinkedIn

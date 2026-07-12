@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bureau-of-transportation-statistics-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: appToken
+  type: apiKey
+  in: header
+  parameter: X-App-Token
+  description: Socrata application token from data.bts.gov developer registration.
+  sources:
+  - openapi/bureau-of-transportation-statistics-openapi.yml

@@ -116,6 +116,8 @@ apis:
       - Trade flow research
       - Transportation policy development
 common:
+  - type: AgenticAccess
+    url: agentic-access/bureau-of-transportation-statistics-agentic-access.yml
   - type: DomainSecurity
     url: security/bureau-of-transportation-statistics-domain-security.yml
   - type: Authentication

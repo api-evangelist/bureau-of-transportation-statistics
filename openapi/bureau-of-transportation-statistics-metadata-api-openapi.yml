@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: BTS Open Data SODA Metadata API
+  version: '2.1'
+  description: 'The Bureau of Transportation Statistics (BTS) publishes its open data
+
+    catalog through a Socrata-hosted portal at data.bts.gov. All datasets
+
+    are accessible via the Socrata Open Data API (SODA) 2.1, with each
+
+    dataset addressable by its four-by-four identifier (e.g., `abcd-1234`).
+
+
+    Authentication is optional but recommended via the `X-App-Token`
+
+    header to receive higher rate limits.
+
+    '
+  contact:
+    name: Bureau of Transportation Statistics
+    url: https://data.bts.gov/
+  license:
+    name: U.S. Government Work
+    url: https://www.usa.gov/government-works
+servers:
+- url: https://data.bts.gov
+  description: BTS Socrata Open Data portal
+security:
+- {}
+- appToken: []
+tags:
+- name: Metadata
+  description: Dataset and view metadata
+paths:
+  /api/views/{datasetId}.json:
+    get:
+      tags:
+      - Metadata
+      summary: Retrieve dataset metadata
+      operationId: getDatasetMetadata
+      parameters:
+      - name: datasetId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dataset metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /api/catalog/v1:
+    get:
+      tags:
+      - Metadata
+      summary: Search the BTS data catalog
+      operationId: searchCatalog
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: domains
+        in: query
+        schema:
+          type: string
+          default: data.bts.gov
+      - name: only
+        in: query
+        description: Resource type filter (datasets, charts, maps).
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Catalog search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                  resultSetSize:
+                    type: integer
+components:
+  securitySchemes:
+    appToken:
+      type: apiKey
+      in: header
+      name: X-App-Token
+      description: Socrata application token from data.bts.gov developer registration.

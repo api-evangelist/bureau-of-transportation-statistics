@@ -1,0 +1,16 @@
+{
+  "provider": "bureau-of-transportation-statistics",
+  "sources": [
+    "bureau-of-transportation-statistics-metadata-api-openapi.yml",
+    "bureau-of-transportation-statistics-resource-api-openapi.yml"
+  ],
+  "outputs": [
+    "bureau-of-transportation-statistics-metadata-api-openapi.yml",
+    "bureau-of-transportation-statistics-resource-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

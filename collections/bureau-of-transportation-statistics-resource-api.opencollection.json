@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BTS Open Data SODA Metadata Resource API",
+    "version": "2.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query a BTS dataset using SoQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.bts.gov/resource/:datasetId.json",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "Four-by-four dataset identifier (e.g., `gxum-mjt3`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of columns to return."
+              },
+              {
+                "name": "$where",
+                "value": "",
+                "type": "query",
+                "description": "SoQL filter expression."
+              },
+              {
+                "name": "$order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order, e.g. `column ASC`."
+              },
+              {
+                "name": "$group",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$having",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of rows to return (default 1000, max 50000)."
+              },
+              {
+                "name": "$offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$q",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search across the dataset."
+              },
+              {
+                "name": "$$app_token",
+                "value": "",
+                "type": "query",
+                "description": "Optional app token as a query parameter."
+              }
+            ]
+          },
+          "docs": "Retrieve rows from a BTS dataset. Supports SoQL (Socrata Query\nLanguage) parameters for filtering, projection, ordering, and\npagination. Replace `{datasetId}` with the dataset's four-by-four\nidentifier as listed at https://data.bts.gov/browse.\n"
+        },
+        {
+          "info": {
+            "name": "Query a BTS dataset as CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.bts.gov/resource/:datasetId.csv",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$where",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query a BTS dataset as CSV"
+        },
+        {
+          "info": {
+            "name": "Query a BTS geospatial dataset as GeoJSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.bts.gov/resource/:datasetId.geojson",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$where",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query a BTS geospatial dataset as GeoJSON"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

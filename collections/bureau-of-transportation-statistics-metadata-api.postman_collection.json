@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "97a47f2e-19ed-4d33-aa3d-c0fa58dd4c43",
+      "name": "Metadata",
+      "description": {
+        "content": "Dataset and view metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecc3a59d-193a-4b90-b842-8350f6622811",
+          "name": "Retrieve dataset metadata",
+          "request": {
+            "name": "Retrieve dataset metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "views",
+                "{{datasetId}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bff1302c-8c2d-4719-abe5-dfdbb305124a",
+              "name": "Dataset metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "views",
+                    "{{datasetId}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\",\n  \"key_2\": 7993.701884223526\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dddc67dc-7dfb-4acd-8917-ebf000f3f1b6",
+          "name": "Search the BTS data catalog",
+          "request": {
+            "name": "Search the BTS data catalog",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "catalog",
+                "v1"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "data.bts.gov"
+                },
+                {
+                  "disabled": false,
+                  "key": "only",
+                  "value": "<string>",
+                  "description": "Resource type filter (datasets, charts, maps)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2e87ca3-d695-431c-80d1-3dc67d22d0b5",
+              "name": "Catalog search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "catalog",
+                    "v1"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "data.bts.gov"
+                    },
+                    {
+                      "key": "only",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultSetSize\": 2777\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.bts.gov",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "datasetId"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "6e907e7e-3c3d-444f-86cb-bc837a21318c",
+    "name": "BTS Open Data SODA Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Bureau of Transportation Statistics (BTS) publishes its open data\ncatalog through a Socrata-hosted portal at data.bts.gov. All datasets\nare accessible via the Socrata Open Data API (SODA) 2.1, with each\ndataset addressable by its four-by-four identifier (e.g., `abcd-1234`).\n\nAuthentication is optional but recommended via the `X-App-Token`\nheader to receive higher rate limits.\n\n\nContact Support:\n Name: Bureau of Transportation Statistics",
+      "type": "text/plain"
+    }
+  }
+}

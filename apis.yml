@@ -3,6 +3,13 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/bureau-of-transportation-statistics/refs/heads/main/apis.yml
 name: Bureau of Transportation Statistics
 tags:
+  - Federal-Government
+  - Statistics
+  - Transportation
+  - Aviation
+  - Freight
+  - Open Data
+tags_raw:
   - Federal Government
   - Statistics
   - Transportation
@@ -39,6 +46,11 @@ apis:
 - aid: bureau-of-transportation-statistics:bts-open-data-soda-api
   name: BTS Open Data SODA API
   tags:
+  - Federal-Government
+  - Transportation
+  - Open Data
+  - Statistics
+  tags_raw:
   - Federal Government
   - Transportation
   - Open Data
@@ -72,6 +84,11 @@ apis:
 - aid: bureau-of-transportation-statistics:transtats
   name: TranStats - Airline On-Time Performance Data
   tags:
+  - Federal-Government
+  - Transportation
+  - Aviation
+  - Statistics
+  tags_raw:
   - Federal Government
   - Transportation
   - Aviation
@@ -102,6 +119,11 @@ apis:
 - aid: bureau-of-transportation-statistics:bts-freight-data
   name: BTS Freight Analysis Framework (FAF)
   tags:
+  - Federal-Government
+  - Freight
+  - Transportation
+  - Statistics
+  tags_raw:
   - Federal Government
   - Freight
   - Transportation

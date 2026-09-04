@@ -36,17 +36,18 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bureau-of-transportation-statistics.png
 access: 3rd-Party
 created: '2024-11-30'
 modified: '2026-04-23'
-position: Consumer
+position: Consuming
 description: >-
   The Bureau of Transportation Statistics (BTS), part of the Department of
   Transportation (DOT) is the preeminent source of statistics on commercial

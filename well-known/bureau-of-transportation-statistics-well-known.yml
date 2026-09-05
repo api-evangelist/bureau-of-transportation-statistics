@@ -1,0 +1,112 @@
+generated: '2026-09-05'
+method: probed
+source: live probe of every host in apis.yml plus the geospatial host discovered this round
+note: >-
+  Every named path in the pipeline path list was probed on all four BTS hosts on
+  2026-09-05. NOTHING was served: no security.txt, no OAuth/OIDC discovery, no
+  api-catalog, no ai-plugin, no UCP/ACP, no AAuth resource, no agent card, no apis.json.
+  Because every path missed, no WellKnown / SecurityTxt / APICatalog pointer is emitted —
+  this file records a verified absence, not a presence. data.bts.gov (Socrata) and
+  www.transtats.bts.gov return a full HTML 404 page for unknown paths, so byte counts are
+  large; both correctly return status 404 and neither echoes the requested path back, and
+  the negative-control probe returned 404 on both. www.bts.gov is fronted by an Akamai
+  edge that returns 403 Access Denied to this crawler for EVERY path including the site
+  root, so its rows record a blocked probe rather than a provider absence.
+hit_count: 0
+path_echo_control: passed
+hosts:
+  - host: https://data.bts.gov
+    soft_404_control:
+      path: /.well-known/bureau-of-transportation-statistics-negative-control-7f3ab91c.json
+      status: 404
+      bytes: 518238
+      verdict: correct-404
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/api-catalog.json, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+  - host: https://geodata.bts.gov
+    soft_404_control:
+      path: /.well-known/bureau-of-transportation-statistics-negative-control-7f3ab91c.json
+      status: 404
+      bytes: 0
+      verdict: correct-404
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://www.transtats.bts.gov
+    soft_404_control:
+      path: /.well-known/bureau-of-transportation-statistics-negative-control-7f3ab91c.json
+      status: 404
+      bytes: 108616
+      verdict: correct-404
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/api-catalog.json, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/ucp.json, status: 404}
+      - {path: /.well-known/acp.json, status: 404}
+      - {path: /.well-known/aauth-resource.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/apis.json, status: 404}
+      - {path: /apis.json, status: 404}
+      - {path: /apis.yml, status: 404}
+  - host: https://www.bts.gov
+    probe_blocked: true
+    probe_block_reason: >-
+      Akamai edge returns HTTP 403 "Access Denied" (errors.edgesuite.net reference) to
+      this crawler for every path, including https://www.bts.gov/ itself, with a browser
+      User-Agent and full browser headers. The 403s below say nothing about what the
+      provider serves.
+    documents:
+      - {path: /.well-known/security.txt, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/oauth-authorization-server, status: 403}
+      - {path: /.well-known/oauth-protected-resource, status: 403}
+      - {path: /.well-known/api-catalog, status: 403}
+      - {path: /.well-known/api-catalog.json, status: 403}
+      - {path: /.well-known/ai-plugin.json, status: 403}
+      - {path: /.well-known/ucp.json, status: 403}
+      - {path: /.well-known/acp.json, status: 403}
+      - {path: /.well-known/aauth-resource.json, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+      - {path: /.well-known/apis.json, status: 403}
+      - {path: /apis.json, status: 403}
+      - {path: /apis.yml, status: 403}
+related:
+  - note: >-
+      www.transportation.gov/.well-known/security.txt returns 403 to this crawler; the
+      archived copy (web.archive.org 2026-02-01) is a 32-byte validation token, not an
+      RFC 9116 document. DOT's actual vulnerability disclosure policy is an HTML page —
+      see security/bureau-of-transportation-statistics-vulnerability-disclosure.yml

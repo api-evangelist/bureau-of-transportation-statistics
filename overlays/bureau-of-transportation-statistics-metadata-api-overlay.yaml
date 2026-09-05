@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bureau of Transportation Statistics (metadata-api)
+  version: 1.0.0
+extends: openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml
+x-generated: '2026-09-05'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pass 2026-09-05; every value below is drawn from an artifact in
+  this repository or from a live response observed on that date. The original spec is never
+  mutated.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: bureau-of-transportation-statistics
+      x-apievangelist-surface: data.bts.gov
+      x-apievangelist-read-only: true
+      x-apievangelist-conformance: conformance/bureau-of-transportation-statistics-conformance.yml
+      x-apievangelist-conventions: conventions/bureau-of-transportation-statistics-conventions.yml
+      x-apievangelist-errors: errors/bureau-of-transportation-statistics-problem-types.yml
+      x-apievangelist-rate-limits: rate-limits/bureau-of-transportation-statistics-rate-limits.yml
+  - target: $.info
+    update:
+      x-request-id-header: X-Socrata-RequestId
+      x-region-header: X-Socrata-Region
+      x-cache-validators: [ETag, Last-Modified]
+  - target: $
+    update:
+      x-change-feed: https://data.bts.gov/catalog.rss
+      x-catalog-dcat-us: https://data.bts.gov/data.json
+      x-odata-metadata: https://data.bts.gov/api/odata/v4/$metadata
+  - target: $.components.securitySchemes.appToken
+    update:
+      x-registration-url: https://data.bts.gov/profile/edit/developer_settings
+      x-required: false
+      x-effect: >-
+        The token grants no additional data access. It moves the caller out of the shared
+        per-IP throttling pool.

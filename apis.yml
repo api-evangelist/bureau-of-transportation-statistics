@@ -46,7 +46,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bureau-of-transportation-statistics.png
 access: 3rd-Party
 created: '2024-11-30'
-modified: '2026-04-23'
+modified: '2026-09-05'
 position: Consuming
 description: >-
   The Bureau of Transportation Statistics (BTS), part of the Department of
@@ -76,6 +76,19 @@ apis:
     type: Documentation
   - url: https://catalog.data.gov/dataset?organization=dot-gov&q=bts
     type: DataAPI
+  - url: odata/bureau-of-transportation-statistics-odata-metadata.xml
+    type: OData
+    name: OData 4.0 CSDL ($metadata) — 184 entity sets
+  - url: https://data.bts.gov/data.json
+    type: DataCatalog
+    name: DCAT-US 1.1 catalog — 418 datasets
+  - url: https://data.bts.gov/catalog.rss
+    type: ChangeLog
+    name: Dataset change feed (RSS)
+  - url: https://dev.socrata.com/docs/endpoints.html
+    type: APIReference
+  - url: https://dev.socrata.com/consumers/getting-started.html
+    type: GettingStarted
   description: >-
     The BTS Open Data portal powered by Socrata provides programmatic access to transportation datasets
     via the Socrata Open Data API (SODA). Supports filtering, querying, and aggregation across aviation,
@@ -179,7 +192,107 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+- aid: bureau-of-transportation-statistics:bts-geospatial-search-api
+  name: BTS Geospatial Search API (NTAD)
+  tags:
+  - Federal-Government
+  - Transportation
+  - Geospatial
+  - Open Data
+  - OGC
+  tags_raw:
+  - Federal Government
+  - Transportation
+  - Geospatial
+  - Open Data
+  - OGC
+  humanURL: https://geodata.bts.gov/
+  baseURL: https://geodata.bts.gov
+  description: >-
+    The search and catalog API behind Geospatial at the Bureau of Transportation Statistics,
+    the home of the National Transportation Atlas Database (NTAD). It is a conformant OGC
+    API - Records implementation: the landing page at /api/search/v1 advertises a
+    conformance document declaring nine opengis.net classes across OGC API - Common Parts 1
+    and 2, OGC API - Features Part 1 and OGC API - Records Part 1, and a service-desc link
+    to a first-party OpenAPI 3.0 definition with 17 operations. Catalog records resolve to
+    1,079 live ArcGIS FeatureServer layers plus GeoJSON, CSV, Shapefile, KML and GeoPackage
+    downloads. Anonymous, free, read-only.
+  properties:
+  - type: OpenAPI
+    url: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+  - type: APIReference
+    url: https://geodata.bts.gov/api/search/definition/
+  - type: Portal
+    url: https://geodata.bts.gov/
+  - type: Conformance
+    url: conformance/bureau-of-transportation-statistics-geodata-conformance.json
+  - type: DataCatalog
+    url: https://geodata.bts.gov/api/feed/dcat-us/1.1.json
+    name: DCAT-US 1.1 catalog — 142 NTAD datasets
+  - type: Overlay
+    url: overlays/bureau-of-transportation-statistics-geodata-search-overlay.yaml
+  features:
+  - OGC API - Records
+  - OGC API - Features
+  - GeoJSON Output
+  - Full-Text and Queryable Catalog Search
+  - ArcGIS GeoServices REST Feature Layers
+  - Bulk DCAT-US 1.1 Feed
+  useCases:
+  - Transportation infrastructure mapping
+  - Freight corridor and network analysis
+  - Geospatial data discovery
+  - Open data cataloging
 common:
+  - type: OpenAPI
+    url: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+    name: BTS Geospatial Search API (OGC API - Records)
+  - type: Conformance
+    url: conformance/bureau-of-transportation-statistics-conformance.yml
+  - type: Conventions
+    url: conventions/bureau-of-transportation-statistics-conventions.yml
+  - type: ErrorCatalog
+    url: errors/bureau-of-transportation-statistics-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/bureau-of-transportation-statistics-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/bureau-of-transportation-statistics-changelog.yml
+  - type: DataModel
+    url: data-model/bureau-of-transportation-statistics-data-model.yml
+  - type: Packages
+    url: packages/bureau-of-transportation-statistics-packages.yml
+  - type: Plans
+    url: plans/bureau-of-transportation-statistics-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/bureau-of-transportation-statistics-rate-limits.yml
+  - type: X-MCPServerCandidate
+    url: mcp/bureau-of-transportation-statistics-mcp.yml
+    name: Derived candidate tool set — BTS ships no MCP server
+    status: candidate
+  - type: LLMsTxt
+    url: llms/bureau-of-transportation-statistics-llms.txt
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Overlay
+    url: overlays/bureau-of-transportation-statistics-resource-api-overlay.yaml
+  - type: Overlay
+    url: overlays/bureau-of-transportation-statistics-metadata-api-overlay.yaml
+  - type: VulnerabilityDisclosure
+    url: security/bureau-of-transportation-statistics-vulnerability-disclosure.yml
+  - type: Security
+    url: https://www.transportation.gov/vulnerability-disclosure-policy
+  - type: APIReference
+    url: https://dev.socrata.com/docs/endpoints.html
+  - type: GettingStarted
+    url: https://dev.socrata.com/consumers/getting-started.html
+  - type: Documentation
+    url: https://dev.socrata.com/
+  - type: SignUp
+    url: https://data.bts.gov/signup
+  - type: Support
+    url: https://www.bts.gov/learn-about-bts-and-our-work/contact-us
+  - type: Blog
+    url: https://www.bts.gov/newsroom
   - type: AgenticAccess
     url: agentic-access/bureau-of-transportation-statistics-agentic-access.yml
   - type: DomainSecurity
@@ -195,7 +308,7 @@ common:
   - type: Portal
     url: https://data.bts.gov/
   - type: PrivacyPolicy
-    url: https://www.bts.gov/privacy-policy
+    url: https://www.transportation.gov/privacy
   - type: TranStats
     url: https://www.transtats.bts.gov/
   - type: Data Portal
@@ -204,3 +317,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v3

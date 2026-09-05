@@ -1,0 +1,61 @@
+generated: '2026-09-05'
+method: searched
+source: https://data.bts.gov/catalog.rss
+scope: data-catalog
+note: >-
+  BTS publishes no API changelog — there is no page announcing endpoint or version
+  changes. It DOES publish a live, dated, machine-readable change feed for the resources
+  the API serves: https://data.bts.gov/catalog.rss (HTTP 200, application/rss+xml,
+  40 items, fetched 2026-09-05). Each item is a dataset or filtered view created or
+  updated, with a pubDate and a link to the asset, which is what a consumer of a data API
+  actually needs to know changed. The entries below are the recent window, verbatim from
+  that feed; this is a data changelog and is labelled as such, not an API version history.
+versioning_scheme: uri-path
+current_version: SODA 2.1 / OData v4 / search v1
+feed:
+  url: https://data.bts.gov/catalog.rss
+  format: rss-2.0
+  item_count: 40
+  author: socratabts@dot.gov
+entries:
+  - date: '2026-09-04'
+    title: 'Dataset Updated: Locations of Docked Bikeshare Stations by System and Year'
+    kind: data-update
+    breaking: false
+  - date: '2026-09-04'
+    title: 'Filtered View Updated: UT Bikeshare Data'
+    kind: data-update
+    breaking: false
+  - date: '2026-09-04'
+    title: 'Filtered View Updated: PTFF - Figure 2-12 - Cities With Bike-Share Systems'
+    kind: data-update
+    breaking: false
+  - date: '2026-09-04'
+    title: 'Dataset Updated: Bikeshare (Docked and Dockless) and E-scooter Systems by Year'
+    kind: data-update
+    breaking: false
+  - date: '2026-09-04'
+    title: 'Dataset Updated: Monthly Transportation Statistics'
+    kind: data-update
+    breaking: false
+  - date: '2026-05-21'
+    title: 'Dataset Updated: Monthly Transportation Statistics'
+    kind: data-update
+    breaking: false
+    source: blogs/2026-05-21-dataset-updated-monthly-transportation-statistics.md
+  - date: '2026-01-28'
+    title: 'Dataset Created: Supply Chain and Freight Indicators'
+    kind: data-addition
+    breaking: false
+    source: blogs/2026-01-28-dataset-created-supply-chain-and-freight-indicators.md
+  - date: '2026-01-02'
+    title: 'Dataset Created: BTS-ATRI Freight Mobility Initiative County-to-County Truck Travel'
+    kind: data-addition
+    breaking: false
+    source: blogs/2026-01-02-dataset-created-bts-atri-freight-mobility-initiative-county-to-county-truck-trav.md
+platform_changelog:
+  url: https://dev.socrata.com/changelog/
+  operator: platform
+  note: >-
+    The hosting platform's own changelog (HTTP 200). Not BTS-authored; recorded so an
+    integrator can track SODA platform changes that affect this API.

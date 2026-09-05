@@ -1,0 +1,55 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://dev.socrata.com/docs/endpoints.html, https://data.bts.gov/api/odata/v4/$metadata,
+  https://geodata.bts.gov/api/search/v1, https://status.socrata.com/
+versioning:
+  scheme: uri-path
+  surfaces:
+    - api: BTS Open Data SODA API
+      current: '2.1'
+      form: /resource/{datasetId}.{ext}
+      docs: https://dev.socrata.com/docs/endpoints.html
+    - api: BTS Open Data OData API
+      current: v4
+      form: /api/odata/v4/{datasetId}
+      note: >-
+        /api/odata/v2/{datasetId} returns 404 not_found "No service found for this URL."
+        as of 2026-09-05 — the v2 surface Socrata once documented is gone from this
+        deployment, with no deprecation notice published by BTS.
+    - api: BTS Geospatial Search API
+      current: v1
+      form: /api/search/v1
+      docs: https://geodata.bts.gov/api/search/definition/
+    - api: Data catalog
+      current: v1
+      form: /api/catalog/v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    Neither BTS nor the hosting platform publishes a deprecation or sunset policy for these
+    endpoints, and no Deprecation or Sunset header was observed on any live response. The
+    OData v2 surface disappearing without notice (above) is the practical consequence.
+    No Deprecation pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No SLA. These are public federal open-data surfaces provided as-is under
+    https://www.usa.gov/government-works.
+status_page:
+  url: https://status.socrata.com/
+  operator: platform
+  publisher: Tyler Data & Insights (Socrata)
+  covers: >-
+    Monitors a "SODA API" component across three regions including "High Compliance -
+    United States", which is the region data.bts.gov responses report
+    (X-Socrata-Region: aws-us-east-1-fedramp-prod).
+  note: >-
+    BTS itself publishes no status page and links none from data.bts.gov. This is the
+    hosting platform's page. Because the status_page_present check asserts that the
+    PROVIDER publishes a status page, no StatusPage pointer is emitted — recording the
+    platform page here instead so an integrator can still find it.
+change_feed: https://data.bts.gov/catalog.rss
+deprecated_operations: []

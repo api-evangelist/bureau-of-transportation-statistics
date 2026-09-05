@@ -1,16 +1,80 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/bureau-of-transportation-statistics-openapi.yml
+generated: '2026-09-05'
+method: searched
+source: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+docs: https://dev.socrata.com/docs/app-tokens.html
+registration: https://data.bts.gov/profile/edit/developer_settings
 summary:
   types:
   - apiKey
   api_key_in:
   - header
+  - query
+  required: false
+  anonymous_access: true
+note: >-
+  EVERY BTS API SURFACE READS ANONYMOUSLY. There is no OAuth, no OIDC, no bearer token and
+  no signup gate on the data — /.well-known/openid-configuration and
+  /.well-known/oauth-authorization-server return 404 on data.bts.gov, geodata.bts.gov and
+  www.transtats.bts.gov (see well-known/). The one credential that exists, the Socrata
+  application token, is not an access grant: the platform documentation states that
+  untokened requests "come from a shared pool via IP address" subject to throttling, while
+  tokened requests are "not throttled ... unless those requests are determined to be
+  abusive or malicious". Register free, send it on every call, and expect nothing else
+  from it.
 schemes:
 - name: appToken
   type: apiKey
   in: header
   parameter: X-App-Token
   description: Socrata application token from data.bts.gov developer registration.
+  required: false
+  registration: https://data.bts.gov/profile/edit/developer_settings
+  docs: https://dev.socrata.com/docs/app-tokens.html
   sources:
-  - openapi/bureau-of-transportation-statistics-openapi.yml
+  - openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+  - openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml
+- name: appTokenQuery
+  type: apiKey
+  in: query
+  parameter: $$app_token
+  description: >-
+    The same application token passed as a query parameter, for clients that cannot set a
+    custom header (e.g. a browser fetch from a static page).
+  required: false
+  sources:
+  - openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+surfaces:
+- host: data.bts.gov
+  auth: optional-api-key
+  scheme: appToken
+  verified: >-
+    GET https://data.bts.gov/resource/bw6n-ddqk.json?$limit=2 returned HTTP 200 with no
+    credential, 2026-09-05.
+- host: geodata.bts.gov
+  auth: none
+  scheme: null
+  verified: >-
+    GET https://geodata.bts.gov/api/search/v1/conformance and
+    /api/search/definition/?f=json both returned HTTP 200 anonymously, 2026-09-05. The
+    published OpenAPI declares no securitySchemes. Individual operations accept an optional
+    `token` query parameter for ArcGIS-secured items only.
+- host: services.arcgis.com/xOi1kZaI0eWDREZv
+  auth: optional-token
+  scheme: arcgis-token
+  verified: >-
+    GET .../arcgis/rest/info?f=json returns
+    authInfo.isTokenBasedSecurity true with tokenServicesUrl
+    https://www.arcgis.com/sharing/generateToken — this governs private items in the USDOT
+    ArcGIS Online tenant; the NTAD feature services referenced from geodata.bts.gov are
+    public and read without a token.
+- host: www.transtats.bts.gov
+  auth: none
+  scheme: null
+  verified: >-
+    HTML query forms only, no machine-readable contract and no credential (HTTP 200,
+    2026-09-05).
+oauth: false
+scopes: false
+scopes_note: >-
+  No scopes/ artifact is written: there is no OAuth surface anywhere on this provider, so
+  there is nothing to scope.

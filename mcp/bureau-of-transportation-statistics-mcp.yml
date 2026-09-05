@@ -1,0 +1,63 @@
+generated: '2026-09-05'
+method: derived
+status: candidate
+source: >-
+  openapi/bureau-of-transportation-statistics-resource-api-openapi.yml,
+  openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml,
+  openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+note: >-
+  BTS ships NO MCP server. The tools below are a DERIVED candidate set, one per real
+  operationId in the harvested specs — a design proposal, not a surface anyone can call.
+  A third-party server exists on npm (@pipeworx/mcp-bts, pipeworx-io, v0.1.0, published
+  2026-06-02) and is recorded under third_party below; it is not BTS's, so this file
+  emits no MCPServer pointer into apis.yml and asserts no endpoint.
+deployment:
+  mode: none
+  auth: none
+  verified: derived
+  note: >-
+    No hosted endpoint and no first-party stdio package. The underlying API needs no
+    credential for public datasets; an X-App-Token only lifts anonymous throttling.
+server:
+  name: bureau-of-transportation-statistics
+  transport: null
+  url: null
+tools:
+  - name: query_dataset
+    description: Query a BTS dataset with SoQL filters, projection, ordering and paging.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDataset
+  - name: query_dataset_csv
+    description: Query a BTS dataset and return CSV.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDatasetCsv
+  - name: query_dataset_geojson
+    description: Query a BTS geospatial dataset and return a GeoJSON FeatureCollection.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDatasetGeoJson
+  - name: get_dataset_metadata
+    description: Retrieve column definitions and metadata for one BTS dataset.
+    source_operation: openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml#getDatasetMetadata
+  - name: search_catalog
+    description: Search the data.bts.gov catalog for datasets by keyword.
+    source_operation: openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml#searchCatalog
+  - name: search_geospatial_catalog
+    description: Search the NTAD geospatial catalog on geodata.bts.gov (OGC API - Records).
+    source_operation: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json#OgcItemController_getSiteCollectionItems_api/search/v1
+  - name: get_geospatial_record
+    description: Fetch one NTAD catalog record by id.
+    source_operation: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json#OgcItemController_getSiteCollectionItemById_api/search/v1
+  - name: list_geospatial_collections
+    description: List the OGC API - Records collections published by geodata.bts.gov.
+    source_operation: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json#CollectionController_getSiteCollections_api/search/v1
+third_party:
+  - name: "@pipeworx/mcp-bts"
+    publisher: pipeworx-io
+    registry: npm
+    url: https://www.npmjs.com/package/@pipeworx/mcp-bts
+    repository: https://github.com/pipeworx-io/mcp-bts
+    version: 0.1.0
+    published: '2026-06-02'
+    mode: local-stdio
+    official: false
+    note: >-
+      Describes itself as "U.S. Bureau of Transportation Statistics (BTS) — data.bts.gov
+      open-data portal (Socrata platform)". Independent of BTS; recorded for ecosystem
+      completeness only.

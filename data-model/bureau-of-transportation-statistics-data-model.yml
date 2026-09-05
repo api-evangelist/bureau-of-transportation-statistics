@@ -1,0 +1,137 @@
+generated: '2026-09-05'
+method: derived
+source:
+  - openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+  - openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+  - openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml
+  - https://data.bts.gov/api/odata/v4/$metadata
+note: >-
+  Derived from $ref edges in the harvested specs and from the OData CSDL. TWO THINGS ARE
+  TRUE OF THIS PROVIDER AND SHAPE THE WHOLE MODEL. First, the row-level payload is
+  UNTYPED: the SODA specs describe every dataset row as an object with
+  additionalProperties: true, because each of the 418 datasets has its own columns. The
+  per-dataset schema is not in any OpenAPI — it is retrievable at runtime, one dataset at a
+  time, from GET /api/views/{datasetId}.json, and the union of all tabular schemas is the
+  OData CSDL at /api/odata/v4/$metadata, which types 184 EntityTypes explicitly. Second,
+  the entity model that IS statically typed is the CATALOG, not the data: the geodata
+  search API models collections, records and feature layers. Identity across every surface
+  is the Socrata four-by-four (^[a-z0-9]{4}-[a-z0-9]{4}$).
+identifiers:
+  - name: four-by-four
+    pattern: '^[a-z0-9]{4}-[a-z0-9]{4}$'
+    example: bw6n-ddqk
+    used_by:
+      - /resource/{datasetId}.json
+      - /api/views/{datasetId}.json
+      - /api/odata/v4/{datasetId}
+    note: >-
+      One id addresses the same asset across SODA, metadata and OData. It is also the
+      EntitySet Name in the CSDL, so the OData entity set for a dataset is literally its
+      four-by-four.
+  - name: arcgis-item-id
+    pattern: '^[0-9a-f]{32}$'
+    example: 9010c04bcdf84c36abb74e98778af579
+    used_by:
+      - /api/search/v1/collections/{collectionId}/items/{itemId}
+      - /api/download/v1/items/{itemId}/{format}
+    note: The geospatial catalog keys on ArcGIS item ids, not on four-by-fours.
+entities:
+  - name: Dataset
+    surface: data.bts.gov
+    count: 418
+    source: https://data.bts.gov/data.json
+    described_by: /api/views/{datasetId}.json
+    note: >-
+      Of these, 184 are tabular and therefore appear as OData EntityTypes; the remainder are
+      stories, maps, filtered views and other non-tabular assets, which return HTTP 403
+      "no row or column access to non-tabular tables" from /resource/.
+  - name: Row
+    surface: data.bts.gov
+    typed: false
+    note: >-
+      additionalProperties: true in the OpenAPI. The real column list per dataset comes from
+      /api/views/{datasetId}.json (columns[]) or from the CSDL EntityType of the same name.
+  - name: OdataEntityType
+    surface: data.bts.gov
+    count: 184
+    source: odata/bureau-of-transportation-statistics-odata-metadata.xml
+    key: __id
+    note: >-
+      Every EntityType declares a Key of __id (Socrata's synthetic row id, e.g.
+      row-hsjj_k39w.gbwr) plus one Property per dataset column with a real EDM type.
+  - name: Catalog
+    surface: geodata.bts.gov
+    schema: Catalog
+  - name: Collection
+    surface: geodata.bts.gov
+    schema: CollectionDto
+    count: 1
+    known_ids: [dataset]
+  - name: OgcItem
+    surface: geodata.bts.gov
+    schema: OgcItemDto
+    count: 142
+    source: https://geodata.bts.gov/api/feed/dcat-us/1.1.json
+  - name: FeatureServer
+    surface: services.arcgis.com/xOi1kZaI0eWDREZv
+    schema: FeatureServerDto
+    count: 1079
+  - name: FeatureLayer
+    schema: FeatureLayerDto
+relationships:
+  - from: Catalog
+    to: Collection
+    kind: has_many
+    via: collections
+  - from: Collection
+    to: OgcItem
+    kind: has_many
+    via: '/collections/{collectionId}/items'
+  - from: OgcItem
+    to: OgcItem
+    kind: has_many
+    via: '/items/{recordId}/related'
+  - from: OgcItem
+    to: OgcItem
+    kind: has_many
+    via: '/items/{recordId}/connected'
+  - from: OgcItem
+    to: FeatureServer
+    kind: has_one
+    via: 'distribution[format=ArcGIS GeoServices REST API]'
+  - from: FeatureServer
+    to: FeatureLayer
+    kind: has_many
+    via: layers
+  - from: Dataset
+    to: Row
+    kind: has_many
+    via: '/resource/{datasetId}'
+  - from: Dataset
+    to: OdataEntityType
+    kind: has_one
+    via: four-by-four EntitySet name
+schema_ref_graph:
+  source: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+  schema_count: 47
+  edges:
+    - {from: GeometryFilterDto, to: [EnvelopeDto, GeometryDto]}
+    - {from: ItemSearchFiltersDto, to: [GeometryFilterDto, RangeParamsEpoch]}
+    - {from: ItemSearchFiltersBlockDto, to: [ItemSearchFiltersDto]}
+    - {from: CollectionDto, to: [ItemSearchFiltersBlockDto]}
+    - {from: CollectionsResponseDto, to: [CollectionDto, CollectionsResponseLinksDto]}
+    - {from: CollectionWithLinksDto, to: [CollectionDtoLink, ItemSearchFiltersBlockDto]}
+    - {from: OgcItemResponseDto, to: [OgcItemDto]}
+    - {from: OgcItemAggregationResponseDto, to: [OgcItemAggregationLinkDto]}
+    - {from: OgcApiLandingPageDto, to: [OgcApiLandingPageLinkDto, OgcItemDto]}
+    - {from: OgcApiConformancePageDto, to: [OgcApiConformancePageLinkDto]}
+    - {from: RestInfoDto, to: [AuthInfoDto]}
+    - {from: FeatureServerDto, to: [FeatureInfoDto, FeatureServerExtentDto, SpatialReferenceDto]}
+    - {from: FeatureServerExtentDto, to: [SpatialReferenceDto]}
+    - {from: FeatureLayerDto, to: [FeatureLayerAdvancedQueryCapabilitiesDto, FeatureLayerDateFieldsTimeReferenceDto, FeatureLayerDrawingInfoDto, FeatureLayerFieldDto, FeatureLayerIndexDto, FeatureLayerOwnershipBasedAccessControlForFeaturesDto, FeatureLayerUniqueIdFieldDto, FeatureServerExtentDto]}
+    - {from: FeatureLayersDto, to: [FeatureLayerDto]}
+    - {from: FeatureLayerDrawingInfoDto, to: [FeatureLayerRendererDto]}
+    - {from: FeatureLayerRendererDto, to: [FeatureLayerSymbolDto]}
+    - {from: FeatureLayerSymbolDto, to: [FeatureLayerSymbolOutlineDto]}
+    - {from: FeatureLayerQueryDto, to: [FeatureLayerFieldDto, FeatureLayerQueryFeatureDto, FeatureLayerUniqueIdFieldDto, SpatialReferenceDto]}
+    - {from: OutputStatistics, to: [StatisticType]}

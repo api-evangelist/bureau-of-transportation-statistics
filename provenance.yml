@@ -7,7 +7,10 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   authentication/bureau-of-transportation-statistics-authentication.yml:
-    method: derived
+    method: searched
+    evidence: declared in the artifact
+  changelog/bureau-of-transportation-statistics-changelog.yml:
+    method: searched
     evidence: declared in the artifact
   collections/bureau-of-transportation-statistics-metadata-api.opencollection.json:
     method: derived
@@ -27,73 +30,25 @@ artifacts:
   collections/bureau-of-transportation-statistics.postman_collection.json:
     method: derived
     evidence: openapi/bureau-of-transportation-statistics
+  conformance/bureau-of-transportation-statistics-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conformance/bureau-of-transportation-statistics-geodata-conformance.json:
+    method: unknown
+    evidence: no authorship recorded
+  conventions/bureau-of-transportation-statistics-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/bureau-of-transportation-statistics-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/bureau-of-transportation-statistics-problem-types.yml:
+    method: searched
+    evidence: declared in the artifact
   finops/bureau-of-transportation-statistics-finops.yml:
     method: generated
     evidence: declared in the artifact
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
+  kin/checks-2026-09-05T055819.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-06T210741.yml:
@@ -177,18 +132,111 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/bureau-of-transportation-statistics-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/bureau-of-transportation-statistics-llms.txt:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  mcp/bureau-of-transportation-statistics-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
+  odata/bureau-of-transportation-statistics-odata-metadata.xml:
+    method: unknown
+    evidence: no authorship recorded
+  openapi/bureau-of-transportation-statistics-geodata-search-openapi.json:
+    method: unknown
+    evidence: no authorship recorded
   openapi/bureau-of-transportation-statistics-metadata-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/bureau-of-transportation-statistics-resource-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
-  plans/bureau-of-transportation-statistics-plans-pricing.yml:
+  overlays/bureau-of-transportation-statistics-geodata-search-overlay.yaml:
     method: generated
+    evidence: declared in the artifact
+  overlays/bureau-of-transportation-statistics-metadata-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/bureau-of-transportation-statistics-resource-api-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/bureau-of-transportation-statistics-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/bureau-of-transportation-statistics-plans-pricing.yml:
+    method: searched
     evidence: declared in the artifact
   rate-limits/bureau-of-transportation-statistics-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   security/bureau-of-transportation-statistics-domain-security.yml:
+    method: unknown
+    evidence: no authorship recorded
+  security/bureau-of-transportation-statistics-vulnerability-disclosure.yml:
+    method: searched
+    evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/bureau-of-transportation-statistics-find-and-query-a-dataset.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bureau-of-transportation-statistics-query-with-odata.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/bureau-of-transportation-statistics-search-the-geospatial-catalog.md:
+    method: generated
+    evidence: declared in the artifact
+  well-known/bureau-of-transportation-statistics-well-known.yml:
     method: unknown
     evidence: no authorship recorded

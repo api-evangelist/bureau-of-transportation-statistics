@@ -1,0 +1,25 @@
+generated: '2026-09-05'
+method: generated
+source: >-
+  Grounded in operationIds verified present in the harvested specs. BTS publishes no
+  AGENTS.md or skill files of its own (searched 2026-09-05).
+skills:
+  - file: bureau-of-transportation-statistics-find-and-query-a-dataset.md
+    name: Find and query a BTS dataset
+    api: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+    operations: [searchCatalog, getDatasetMetadata, queryDataset, queryDatasetCsv, queryDatasetGeoJson]
+  - file: bureau-of-transportation-statistics-search-the-geospatial-catalog.md
+    name: Search the BTS geospatial catalog (NTAD)
+    api: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+    operations:
+      - OgcRootController_getSiteRoot_api/search/v1
+      - OgcRootConformanceController_getApiConformance_api/search/v1
+      - CollectionController_getSiteCollections_api/search/v1
+      - OgcItemController_getSiteCollectionItems_api/search/v1
+      - OgcItemController_getSiteCollectionItemById_api/search/v1
+      - QueryableController_getSiteCollectionQueryables_api/search/v1
+      - OgcItemController_getRelatedOgcItemsById_api/search/v1
+  - file: bureau-of-transportation-statistics-query-with-odata.md
+    name: Query BTS data with OData 4.0
+    api: odata/bureau-of-transportation-statistics-odata-metadata.xml
+    operations: [queryDataset]

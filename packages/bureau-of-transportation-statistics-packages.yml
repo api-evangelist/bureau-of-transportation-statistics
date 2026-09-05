@@ -1,0 +1,83 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  npm, PyPI, RubyGems, CRAN and the dotbts GitHub organization, searched 2026-09-05
+note: >-
+  THE BUREAU OF TRANSPORTATION STATISTICS PUBLISHES NO CLIENT LIBRARY. Its GitHub
+  organization (https://github.com/dotbts) holds exactly one public repository — BPA, the
+  General Active Transportation Infrastructure Specification (GATIS) — which is a data
+  specification, not an SDK. Every package below is a THIRD-PARTY client for the Socrata
+  SODA platform that data.bts.gov runs on, or a third-party wrapper of the BTS portal.
+  None is first-party, so official is false on every entry and NO `SDKs` pointer is
+  emitted in apis.yml. Recorded here because they are what an integrator will actually
+  reach for, and because their release dates are the strongest available decay signal:
+  the JavaScript client last shipped in 2017, the Ruby client in 2020, the Python client
+  in 2022, all against a live API BTS still updates daily.
+official_sdk_count: 0
+packages:
+  - language: python
+    registry: pypi
+    name: sodapy
+    url: https://pypi.org/project/sodapy/
+    install: pip install sodapy
+    official: false
+    maintainer: Cristina Muñoz (xmunoz)
+    repository: https://github.com/xmunoz/sodapy
+    version: 2.2.0
+    published: '2022-08-31'
+    note: >-
+      Community Python client for the Socrata SODA 2.1 API; works against data.bts.gov by
+      passing the domain. Last release 2022-08-31, four years before this probe.
+  - language: ruby
+    registry: rubygems
+    name: soda-ruby
+    url: https://rubygems.org/gems/soda-ruby
+    install: gem install soda-ruby
+    official: false
+    maintainer: Socrata (Chris Metcalf)
+    repository: http://github.com/socrata/soda-ruby
+    version: 1.0.1
+    published: '2020-06-24'
+    note: >-
+      Platform-vendor client published by Socrata, not by BTS. Last release 2020-06-24.
+  - language: javascript
+    registry: npm
+    name: soda-js
+    url: https://www.npmjs.com/package/soda-js
+    install: npm install soda-js
+    official: false
+    maintainer: Socrata
+    version: 0.2.3
+    published: '2017-01-25'
+    note: >-
+      Platform-vendor JavaScript client for SODA 2. Last release 2017-01-25 — nine years
+      stale against an API surface BTS updates daily (see
+      changelog/bureau-of-transportation-statistics-changelog.yml).
+  - language: r
+    registry: cran
+    name: RSocrata
+    url: https://cran.r-project.org/web/packages/RSocrata/index.html
+    install: install.packages("RSocrata")
+    official: false
+    maintainer: City of Chicago / community
+    version: null
+    published: null
+    note: >-
+      CRAN page returns HTTP 200 (probed 2026-09-05) but the version metadata endpoint was
+      not queried in this pass; version deliberately left null rather than guessed.
+      Third-party in any case — RSocrata is maintained by the City of Chicago open data
+      team, not by BTS or by the platform vendor.
+  - language: javascript
+    registry: npm
+    name: "@pipeworx/mcp-bts"
+    url: https://www.npmjs.com/package/@pipeworx/mcp-bts
+    install: npx -y @pipeworx/mcp-bts
+    official: false
+    maintainer: pipeworx-io
+    repository: https://github.com/pipeworx-io/mcp-bts
+    version: 0.1.0
+    published: '2026-06-02'
+    note: >-
+      A third-party MCP server wrapping data.bts.gov. NOT published by BTS — see
+      mcp/bureau-of-transportation-statistics-mcp.yml, which records it as ecosystem
+      context and does not claim it as a BTS agent surface.

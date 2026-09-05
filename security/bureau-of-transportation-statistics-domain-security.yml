@@ -1,11 +1,14 @@
-generated: '2026-07-11'
+generated: '2026-09-05'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: >-
+  live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts (probe-domain-security.py,
+  2026-09-05). The geodata.bts.gov row was probed by hand in the same pass — the script
+  did not enumerate it — via openssl s_client and a HEAD request, same method, same day.
 hosts:
 - host: www.bts.gov
   https: true
   tls_version: TLSv1.3
-  cert_expires: Jul 21 23:59:59 2026 GMT
+  cert_expires: Jan 31 23:59:59 2027 GMT
   hsts: null
 - host: data.bts.gov
   https: true
@@ -17,6 +20,12 @@ hosts:
   https: true
   tls_version: TLSv1.3
   cert_expires: Jan 15 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: geodata.bts.gov
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 30 11:24:34 2026 GMT
   hsts: true
   hsts_max_age: 31536000
 domains:

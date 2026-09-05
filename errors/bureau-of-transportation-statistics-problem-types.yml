@@ -1,0 +1,68 @@
+generated: '2026-09-05'
+method: searched
+source: https://dev.socrata.com/docs/response-codes.html
+derived_from:
+  - openapi/bureau-of-transportation-statistics-resource-api-openapi.yml
+format: socrata-error-envelope
+envelope:
+  media_type: application/json
+  fields:
+    - {name: code, description: Classification identifier for the error type, example: not_found}
+    - {name: error, description: Boolean flag for programmatic error detection, example: true}
+    - {name: message, description: Human-readable explanation, example: 'No service found for this URL.'}
+    - {name: status, description: HTTP status code}
+    - {name: data, description: Machine-readable error details, varies by error type}
+    - {name: source, description: Request origin information including position data for SoQL parse errors}
+  note: >-
+    NOT RFC 9457. The response content-type on an error is application/json, not
+    application/problem+json, and there is no `type` URI. Two live examples observed
+    2026-09-05: GET https://data.bts.gov/resource/23mg-e8r7.json returned 403 with
+    {"error": true, "message": "no row or column access to non-tabular tables"} plus an
+    X-Error-Message response header carrying the same string; GET
+    https://data.bts.gov/api/odata/v2/bw6n-ddqk returned 404 with
+    {"code": "not_found", "error": true, "message": "No service found for this URL."}.
+    The OData surface uses a different envelope again — {"error":{"code":null,"message":...}} —
+    so an agent must handle two shapes across one host.
+problems:
+  - status: 200
+    title: OK
+    description: Your request was successful.
+  - status: 202
+    title: Request Processing
+    description: >-
+      Long-running query still processing. Retry the request; when it completes you get a
+      200 instead. An agent MUST treat 202 as "not done" rather than as success.
+  - status: 400
+    title: Bad Request
+    description: >-
+      Malformed request — most often an invalid SoQL expression in $where/$select/$group.
+      The error body's `source` carries the parse position.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDataset
+  - status: 401
+    title: Unauthorized
+    description: Authentication failed; review the authentication procedure.
+  - status: 403
+    title: Forbidden
+    description: >-
+      Not authorized for this resource. Also returned for structurally impossible requests
+      on non-tabular assets, e.g. a /resource/ row query against a story or map asset.
+  - status: 404
+    title: Not Found
+    description: The requested dataset, view or service does not exist.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDataset
+  - status: 429
+    title: Too Many Requests
+    description: >-
+      The client is being rate limited. Register an X-App-Token at
+      https://data.bts.gov/profile/edit/developer_settings and send it on every request.
+      No RateLimit-* or Retry-After header was observed on live BTS responses.
+    source_operation: openapi/bureau-of-transportation-statistics-resource-api-openapi.yml#queryDataset
+  - status: 500
+    title: Server Error
+    description: Platform-side failure. The OData surface returns a diagnostic code in `message`.
+odata_envelope:
+  media_type: application/json;odata.metadata=minimal
+  shape: '{"error": {"code": <string|null>, "message": <string>}}'
+  observed:
+    - {url: 'https://data.bts.gov/api/odata/v4/bw6n-ddqk/$metadata', status: 400, message: The URI is malformed.}
+    - {url: 'https://data.bts.gov/api/odata/v4/23mg-e8r7', status: 500, message: An internal error occurred...}

@@ -1,0 +1,117 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://dev.socrata.com/docs/endpoints.html, https://dev.socrata.com/docs/app-tokens.html,
+  https://dev.socrata.com/docs/response-codes.html, https://geodata.bts.gov/api/search/definition/,
+  plus live responses from https://data.bts.gov observed 2026-09-05
+cross_links:
+  errors: errors/bureau-of-transportation-statistics-problem-types.yml
+  lifecycle: lifecycle/bureau-of-transportation-statistics-lifecycle.yml
+  authentication: authentication/bureau-of-transportation-statistics-authentication.yml
+  rate_limits: rate-limits/bureau-of-transportation-statistics-rate-limits.yml
+  conformance: conformance/bureau-of-transportation-statistics-conformance.yml
+surface_shape:
+  read_only: true
+  note: >-
+    Every operation on every BTS surface harvested this round is a GET. There is no public
+    write, no create/update/delete, no job submission. That single fact decides three of
+    the blocks below.
+authentication:
+  style: optional-api-key
+  mechanism: X-App-Token request header (or $$app_token query parameter)
+  required: false
+  registration: https://data.bts.gov/profile/edit/developer_settings
+  note: >-
+    Public datasets are readable anonymously. The token does not grant access; it moves the
+    caller out of the shared per-IP throttling pool. geodata.bts.gov reads anonymously; the
+    backing ArcGIS tenant advertises token-based security
+    (https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/info) for private items only.
+idempotency:
+  coverage: na
+  supported: false
+  header: null
+  scope: []
+  note: >-
+    NOT "none" — na. There is no mutating operation anywhere on this surface, so there is
+    nothing for an idempotency key to protect. GET is idempotent by HTTP semantics. No
+    Idempotency pointer is emitted in apis.yml; emitting one would claim a replay-protection
+    contract that does not exist and is not needed.
+reversibility:
+  grade: na
+  applicable: false
+  reversal_operations: []
+  window: null
+  note: >-
+    Read-only surface — an agent cannot take an action here that would need taking back.
+    Recorded as na rather than zero, per the pipeline rule that an honest na leaves the
+    denominator.
+dry_run_mode:
+  supported: na
+  note: >-
+    na for the same reason. The closest analogue is that $limit=1 makes any query cheap to
+    rehearse, and https://data.bts.gov/api/views/{id}.json returns the column schema before
+    a query is written.
+pagination:
+  style: limit-offset
+  surfaces:
+    - api: SODA
+      params: {limit: $limit, offset: $offset}
+      default_limit: 1000
+      max_limit: 50000
+      note: >-
+        Socrata documents that paging without a stable $order can repeat or skip rows;
+        always pass $order (e.g. `:id`) when walking a dataset.
+    - api: OGC API - Records (geodata.bts.gov)
+      params: {limit: limit, offset: startindex}
+      spec: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+    - api: OData v4
+      params: {limit: $top, offset: $skip}
+  response_fields:
+    - >-
+      SODA returns a bare JSON array with no envelope and no total count; an empty array is
+      the end-of-collection signal.
+    - >-
+      The OGC API - Records surface returns links[] with rel=next when more items exist.
+query_language:
+  name: SoQL (Socrata Query Language)
+  params: [$select, $where, $order, $group, $having, $limit, $offset, $q]
+  docs: https://dev.socrata.com/docs/endpoints.html
+  note: >-
+    SoQL is the field-selection and filtering mechanism; there is no separate
+    expand/sparse-fieldset convention. $select is the sparse-fieldset equivalent.
+content_negotiation:
+  style: path-extension
+  formats: [.json, .csv, .geojson, .xml, .rdf]
+  note: >-
+    Format is chosen by file extension on the resource path, not by an Accept header —
+    /resource/{id}.json vs /resource/{id}.csv vs /resource/{id}.geojson. On
+    geodata.bts.gov the equivalent is the ?f=json query parameter.
+request_tracing:
+  header: X-Socrata-RequestId
+  direction: response
+  observed: true
+  example: 74e585f6e79a8c83e3cc6a123e8b9cce
+  note: >-
+    Present on every live data.bts.gov response observed 2026-09-05, alongside
+    X-Socrata-Region. Quote it when reporting a problem. There is no client-supplied
+    correlation-id header.
+caching:
+  headers: [ETag, Last-Modified]
+  observed: true
+  note: >-
+    Live responses carry ETag and Last-Modified; conditional GET is the cheapest way for an
+    agent to poll a dataset. Pair with https://data.bts.gov/catalog.rss to know when to poll.
+versioning:
+  style: uri-path
+  detail: see lifecycle/bureau-of-transportation-statistics-lifecycle.yml
+error_envelope:
+  shape: '{code, error, message, status, data, source}'
+  rfc9457: false
+  detail: see errors/bureau-of-transportation-statistics-problem-types.yml
+rate_limit_signaling:
+  status_on_exhaustion: 429
+  headers_observed: []
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was present on any live response
+    observed 2026-09-05. An agent gets no forward signal — only the 429 itself. See
+    rate-limits/bureau-of-transportation-statistics-rate-limits.yml

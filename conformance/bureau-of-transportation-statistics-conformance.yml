@@ -1,0 +1,131 @@
+generated: '2026-09-05'
+method: searched
+source: https://geodata.bts.gov/api/search/v1/conformance
+note: >-
+  Conformance for the Bureau of Transportation Statistics API surface. BTS runs three
+  first-party machine-readable surfaces on hosts it controls: data.bts.gov (Socrata /
+  Tyler Data & Insights SODA 2.1 + OData 4.0 + Project Open Data DCAT-US 1.1),
+  geodata.bts.gov (ArcGIS Hub, OGC API - Records/Features + a first-party OpenAPI 3.0),
+  and www.transtats.bts.gov (HTML query forms, no machine contract). Every entry below
+  carries the exact URL that was fetched on 2026-09-05. Platform-level conformance is
+  labelled as such — the class URIs are served BY BTS's own hosts, but the implementation
+  belongs to the hosting platform (Tyler Data & Insights, Esri ArcGIS Online).
+standards:
+  - id: ogcapi-common-1
+    name: OGC API - Common Part 1 Core
+    conforms: true
+    evidence: >-
+      https://geodata.bts.gov/api/search/v1/conformance declares
+      http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core and .../conf/json
+    file: conformance/bureau-of-transportation-statistics-geodata-conformance.json
+  - id: ogcapi-common-2
+    name: OGC API - Common Part 2 Collections
+    conforms: true
+    evidence: >-
+      https://geodata.bts.gov/api/search/v1/conformance declares
+      http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/collections and .../conf/json
+    file: conformance/bureau-of-transportation-statistics-geodata-conformance.json
+  - id: ogcapi-features-1
+    name: OGC API - Features Part 1 Core
+    conforms: true
+    evidence: >-
+      https://geodata.bts.gov/api/search/v1/conformance declares
+      http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core, .../conf/geojson and
+      .../conf/oas30
+    file: conformance/bureau-of-transportation-statistics-geodata-conformance.json
+  - id: ogcapi-records-1
+    name: OGC API - Records Part 1 Core
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      https://geodata.bts.gov/api/search/v1/conformance declares
+      http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/core and .../conf/json;
+      the catalog collection is served at
+      https://geodata.bts.gov/api/search/v1/collections/dataset/items
+    file: conformance/bureau-of-transportation-statistics-geodata-conformance.json
+  - id: odata-v4
+    name: OASIS OData 4.0
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      https://data.bts.gov/api/odata/v4/$metadata returns a CSDL/EDMX 4.0 document
+      (edmx:Edmx Version="4.0", OASIS namespace) declaring 184 EntityTypes and 184
+      EntitySets, one per tabular BTS dataset; a dataset feed at
+      https://data.bts.gov/api/odata/v4/bw6n-ddqk returns @odata.context. HTTP 200,
+      fetched 2026-09-05.
+    file: odata/bureau-of-transportation-statistics-odata-metadata.xml
+  - id: dcat-us-1.1
+    name: Project Open Data / DCAT-US 1.1
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      https://data.bts.gov/data.json returns a dcat:Catalog with
+      conformsTo https://project-open-data.cio.gov/v1.1/schema and 418 datasets (HTTP 200);
+      https://geodata.bts.gov/api/feed/dcat-us/1.1.json returns the same shape with 142
+      NTAD datasets. Required by OMB M-13-13 for federal agencies.
+  - id: dcat-rdf
+    name: DCAT (W3C) RDF/XML serialization
+    conforms: true
+    evidence: >-
+      https://data.bts.gov/api/dcat.rdf returns application/rdf+xml using the
+      http://www.w3.org/ns/dcat# vocabulary (HTTP 200, 925 KB).
+  - id: soda-2.1
+    name: Socrata Open Data API (SODA) 2.1
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      https://data.bts.gov/resource/bw6n-ddqk.json?$limit=2 returns HTTP 200 with SoQL
+      parameters honoured; response carries X-Socrata-RequestId and X-Socrata-Region.
+      Documented at https://dev.socrata.com/docs/endpoints.html
+  - id: geoservices-rest
+    name: Esri ArcGIS GeoServices REST Specification
+    conforms: true
+    evidence: >-
+      https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/services?f=json returns
+      currentVersion 12 with 1,079 FeatureServer services for the USDOT/BTS ArcGIS Online
+      tenant that backs geodata.bts.gov (HTTP 200).
+  - id: geojson-rfc7946
+    name: GeoJSON (RFC 7946)
+    conforms: true
+    evidence: >-
+      SODA serves /resource/{id}.geojson; the OGC API - Records surface declares
+      http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson
+  - id: fedramp
+    name: FedRAMP authorized hosting
+    conforms: true
+    operator: platform
+    evidence: >-
+      Live responses from https://data.bts.gov carry X-Socrata-Region:
+      aws-us-east-1-fedramp-prod (observed 2026-09-05). The FedRAMP authorization belongs
+      to the platform operator (Tyler Data & Insights / Socrata), not to BTS; BTS
+      publishes no compliance or trust page of its own, so no Compliance pointer is emitted.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No oauth2 securityScheme in any harvested spec; /.well-known/oauth-authorization-server
+      and /.well-known/openid-configuration 404 on data.bts.gov, geodata.bts.gov and
+      www.transtats.bts.gov.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on every BTS host probed.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the Socrata envelope {code, error, message, status, data, source}
+      with content-type application/json, not application/problem+json. Observed live at
+      https://data.bts.gov/resource/23mg-e8r7.json (403) and
+      https://data.bts.gov/api/odata/v2/bw6n-ddqk (404).
+  - id: json-api
+    conforms: false
+    evidence: No JSON:API media type or document structure in any surface.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      SODA $limit/$offset (default 1000, max 50000); OGC API - Records limit/startindex
+      on /api/search/v1/collections/{collectionId}/items; OData $top/$skip.
+      See conventions/bureau-of-transportation-statistics-conventions.yml
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      Read-only surface — every operation in every harvested spec is GET, so there is no
+      mutating request to make idempotent.

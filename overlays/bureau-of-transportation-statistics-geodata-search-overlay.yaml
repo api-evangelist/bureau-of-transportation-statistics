@@ -1,0 +1,51 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bureau of Transportation Statistics (geodata search)
+  version: 1.0.0
+extends: openapi/bureau-of-transportation-statistics-geodata-search-openapi.json
+x-generated: '2026-09-05'
+x-method: generated
+x-source: >-
+  API Evangelist enrichment pass 2026-09-05. The harvested spec is served verbatim from
+  https://geodata.bts.gov/api/search/definition/?f=json and ships with an EMPTY servers[]
+  array and an empty tags[] array; the actions below record the base URL that was actually
+  fetched and the conformance the live service declares, without editing the original.
+actions:
+  - target: $
+    update:
+      servers:
+        - url: https://geodata.bts.gov
+          description: >-
+            Base URL established by fetch, not by the spec — the document was retrieved from
+            https://geodata.bts.gov/api/search/definition/?f=json and every path in it is
+            already absolute from the host root (/api/search/v1/...). The published spec
+            declares servers: [].
+  - target: $.info
+    update:
+      x-apievangelist-provider: bureau-of-transportation-statistics
+      x-apievangelist-surface: geodata.bts.gov
+      x-apievangelist-read-only: true
+      x-apievangelist-source-url: https://geodata.bts.gov/api/search/definition/?f=json
+      x-apievangelist-harvested: '2026-09-05'
+      x-ogc-conformance-url: https://geodata.bts.gov/api/search/v1/conformance
+      x-ogc-conformance-classes:
+        - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/core
+        - http://www.opengis.net/spec/ogcapi-common-1/1.0/conf/json
+        - http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/collections
+        - http://www.opengis.net/spec/ogcapi-common-2/0.0/conf/json
+        - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core
+        - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson
+        - http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30
+        - http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/core
+        - http://www.opengis.net/spec/ogcapi-records-1/1.0/conf/json
+      x-apievangelist-gaps: >-
+        Observed gaps in the published spec, recorded for a provider follow-up and NOT
+        patched here: servers[] is empty; tags[] is empty at the root while every operation
+        carries a tag; no operation declares a non-2xx response, so the 400/404/429 an agent
+        will meet are undocumented; no securitySchemes are declared even though the backing
+        ArcGIS tenant advertises token-based security for private items.
+  - target: $
+    update:
+      x-dcat-us-feed: https://geodata.bts.gov/api/feed/dcat-us/1.1.json
+      x-arcgis-rest-root: https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/services
+      x-arcgis-feature-services: 1079

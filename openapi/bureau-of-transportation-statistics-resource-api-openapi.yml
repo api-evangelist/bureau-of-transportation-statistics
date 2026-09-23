@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: BTS Open Data SODA Metadata Resource API
+  title: BTS Open Data SODA Resource API
   version: '2.1'
   description: 'The Bureau of Transportation Statistics (BTS) publishes its open data
 
@@ -13,9 +13,7 @@ info:
 
     Authentication is optional but recommended via the `X-App-Token`
 
-    header to receive higher rate limits.
-
-    '
+    header to receive higher rate limits.'
   contact:
     name: Bureau of Transportation Statistics
     url: https://data.bts.gov/
@@ -43,9 +41,7 @@ paths:
 
         pagination. Replace `{datasetId}` with the dataset''s four-by-four
 
-        identifier as listed at https://data.bts.gov/browse.
-
-        '
+        identifier as listed at https://data.bts.gov/browse.'
       operationId: queryDataset
       parameters:
       - name: datasetId

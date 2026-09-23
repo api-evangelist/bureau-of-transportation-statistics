@@ -13,9 +13,7 @@ info:
 
     Authentication is optional but recommended via the `X-App-Token`
 
-    header to receive higher rate limits.
-
-    '
+    header to receive higher rate limits.'
   contact:
     name: Bureau of Transportation Statistics
     url: https://data.bts.gov/

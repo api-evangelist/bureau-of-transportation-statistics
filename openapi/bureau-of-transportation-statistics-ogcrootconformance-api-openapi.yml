@@ -32,22 +32,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OgcApiConformancePageDto:
-      type: object
-      properties:
-        conformsTo:
-          description: Array of links to conformance specifications that API conforms to
-          type: array
-          items:
-            type: string
-        links:
-          description: API links
-          type: array
-          items:
-            $ref: '#/components/schemas/OgcApiConformancePageLinkDto'
-      required:
-      - conformsTo
-      - links
     OgcApiConformancePageLinkDto:
       type: object
       properties:
@@ -71,3 +55,19 @@ components:
       - type
       - title
       - href
+    OgcApiConformancePageDto:
+      type: object
+      properties:
+        conformsTo:
+          description: Array of links to conformance specifications that API conforms to
+          type: array
+          items:
+            type: string
+        links:
+          description: API links
+          type: array
+          items:
+            $ref: '#/components/schemas/OgcApiConformancePageLinkDto'
+      required:
+      - conformsTo
+      - links

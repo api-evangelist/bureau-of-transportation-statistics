@@ -2,7 +2,7 @@ aid: bureau-of-transportation-statistics
 url: https://raw.githubusercontent.com/api-evangelist/bureau-of-transportation-statistics/refs/heads/main/apis.yml
 name: Bureau of Transportation Statistics
 tags:
-- Federal-Government
+- Federal Government
 - Statistics
 - Transportation
 - Aviation
@@ -15,6 +15,7 @@ tags_raw:
 - Aviation
 - Freight
 - Open Data
+- Federal-Government
 type: Index
 kind: government
 deliveryModel:
@@ -54,7 +55,7 @@ apis:
 - aid: bureau-of-transportation-statistics:bts-open-data-soda-api
   name: BTS Open Data SODA API
   tags:
-  - Federal-Government
+  - Federal Government
   - Transportation
   - Open Data
   - Statistics
@@ -63,6 +64,7 @@ apis:
   - Transportation
   - Open Data
   - Statistics
+  - Federal-Government
   humanURL: https://data.bts.gov/
   baseURL: https://data.bts.gov/resource/
   properties:
@@ -104,7 +106,7 @@ apis:
 - aid: bureau-of-transportation-statistics:transtats
   name: TranStats - Airline On-Time Performance Data
   tags:
-  - Federal-Government
+  - Federal Government
   - Transportation
   - Aviation
   - Statistics
@@ -113,6 +115,7 @@ apis:
   - Transportation
   - Aviation
   - Statistics
+  - Federal-Government
   humanURL: https://www.transtats.bts.gov/
   properties:
   - url: https://www.transtats.bts.gov/
@@ -138,7 +141,7 @@ apis:
 - aid: bureau-of-transportation-statistics:bts-freight-data
   name: BTS Freight Analysis Framework (FAF)
   tags:
-  - Federal-Government
+  - Federal Government
   - Freight
   - Transportation
   - Statistics
@@ -147,6 +150,7 @@ apis:
   - Freight
   - Transportation
   - Statistics
+  - Federal-Government
   humanURL: https://www.bts.gov/faf
   properties:
   - url: https://www.bts.gov/faf

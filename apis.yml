@@ -336,6 +336,8 @@ apis:
   - type: DataCatalog
     url: https://geodata.bts.gov/api/feed/dcat-us/1.1.json
 common:
+- type: FinOps
+  url: finops/bureau-of-transportation-statistics-finops.yml
 - type: Overlay
   url: overlays/bureau-of-transportation-statistics-geodata-search-overlay.yaml
 - type: OpenAPI

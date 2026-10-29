@@ -1,4 +1,4 @@
-# Bureau of Transportation Statistics (bureau-of-transportation-statistics)
+# Bureau of Transportation Statistics
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,102 +66,152 @@
 
 The Bureau of Transportation Statistics (BTS), part of the Department of Transportation (DOT) is the preeminent source of statistics on commercial aviation, multimodal freight activity, and transportation economics, and provides context to decision makers and the public for understanding statistics on transportation.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bureau-of-transportation-statistics/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bureau-of-transportation-statistics/refs/heads/main/apis.yml)
+**Areas:** Federal Government · Statistics · Transportation · Aviation · Freight · Open Data
 
-## Scope
+## Bureau of Transportation Statistics on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Bureau of Transportation Statistics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bureau-of-transportation-statistics/](https://apis.io/providers/bureau-of-transportation-statistics/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (13)
 
-- Federal Government
-- Statistics
-- Transportation
-- Aviation
-- Freight
-- Open Data
+- [BTS Open Data SODA API](https://apis.io/apis/bureau-of-transportation-statistics/bts-open-data-soda-api/) — The BTS Open Data portal powered by Socrata provides programmatic access to transportation datasets via the Socrata Open Data API (SODA). Supports…
+- [TranStats - Airline On-Time Performance Data](https://apis.io/apis/bureau-of-transportation-statistics/transtats/) — TranStats is BTS's aviation and transportation statistics database providing flight on-time performance data, carrier and airport snapshots, fuel…
+- [BTS Freight Analysis Framework (FAF)](https://apis.io/apis/bureau-of-transportation-statistics/bts-freight-data/) — The Freight Analysis Framework integrates data from multiple sources to create a comprehensive picture of freight flows to, from, within, and through the…
+- [Bureau of Transportation Statistics Metadata API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-metadata-api/) — Dataset and view metadata
+- [Bureau of Transportation Statistics Resource API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-resource-api/) — Dataset resource queries via SoQL
+- [Bureau of Transportation Statistics Catalog API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-catalog-api/) — The Catalog API from Bureau of Transportation Statistics — 1 operation(s) for catalog.
+- [Bureau of Transportation Statistics Collection API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-collection-api/) — The Collection API from Bureau of Transportation Statistics — 2 operation(s) for collection.
+- [Bureau of Transportation Statistics Geoservice Beta API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-geoservice-beta-api/) — The Geoservice-Beta API from Bureau of Transportation Statistics — 6 operation(s) for geoservice-beta.
+- [Bureau of Transportation Statistics Ogc Item API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-ogcitem-api/) — The OgcItem API from Bureau of Transportation Statistics — 4 operation(s) for ogcitem.
+- [Bureau of Transportation Statistics Ogc Item Aggregation API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-ogcitemaggregation-api/) — The OgcItemAggregation API from Bureau of Transportation Statistics — 1 operation(s) for ogcitemaggregation.
+- [Bureau of Transportation Statistics Ogc Root API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-ogcroot-api/) — The OgcRoot API from Bureau of Transportation Statistics — 1 operation(s) for ogcroot.
+- [Bureau of Transportation Statistics Ogc Root Conformance API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-ogcrootconformance-api/) — The OgcRootConformance API from Bureau of Transportation Statistics — 1 operation(s) for ogcrootconformance.
+- [Bureau of Transportation Statistics Queryable API](https://apis.io/apis/bureau-of-transportation-statistics/bureau-of-transportation-statistics-queryable-api/) — The Queryable API from Bureau of Transportation Statistics — 1 operation(s) for queryable.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-30
-- **Modified:** 2026-04-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### BTS Open Data SODA API
+Model Context Protocol servers that expose the API to agents.
 
-The BTS Open Data portal powered by Socrata provides programmatic access to transportation datasets via the Socrata Open Data API (SODA). Supports filtering, querying, and aggregation across aviation, freight, and transportation economics datasets. Also supports OData V2/V4 for tools like Tableau and Excel.
+- [bureau-of-transportation-statistics](https://apis.io/servers/bureau-of-transportation-statistics/bureau-of-transportation-statistics/)
 
-- **Human URL:** [https://data.bts.gov/](https://data.bts.gov/)
-- **Base URL:** `https://data.bts.gov/resource/`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Federal Government
-- Transportation
-- Open Data
-- Statistics
+- [Bureau Of Transportation Statistics Agentic Access](https://apis.io/agentic-access/bureau-of-transportation-statistics/bureau-of-transportation-statistics-agentic-access/)
 
-#### Properties
+#### Collections (3)
 
-- [Portal](https://data.bts.gov/)
-- [Documentation](https://dev.socrata.com/)
-- [Data A P I](https://catalog.data.gov/dataset?organization=dot-gov&q=bts)
-- [Postman Collection](collections/bureau-of-transportation-statistics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bureau-of-transportation-statistics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### TranStats - Airline On-Time Performance Data
+- [BTS Open Data SODA API](https://apis.io/collections/bureau-of-transportation-statistics/open-bureau-of-transportation-statistics/)
+- [BTS Open Data SODA Metadata API](https://apis.io/collections/bureau-of-transportation-statistics/open-bureau-of-transportation-statistics-metadata-api/)
+- [BTS Open Data SODA Metadata Resource API](https://apis.io/collections/bureau-of-transportation-statistics/open-bureau-of-transportation-statistics-resource-api/)
 
-TranStats is BTS's aviation and transportation statistics database providing flight on-time performance data, carrier and airport snapshots, fuel consumption data, and comprehensive airline statistics. Enables custom queries and downloads across hundreds of aviation data tables.
+#### Overlays (3)
 
-- **Human URL:** [https://www.transtats.bts.gov/](https://www.transtats.bts.gov/)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Tags
+- [Bureau Of Transportation Statistics Geodata Search Overlay](https://apis.io/overlays/bureau-of-transportation-statistics/bureau-of-transportation-statistics-geodata-search-overlay/)
+- [Bureau Of Transportation Statistics Metadata Api Overlay](https://apis.io/overlays/bureau-of-transportation-statistics/bureau-of-transportation-statistics-metadata-api-overlay/)
+- [Bureau Of Transportation Statistics Resource Api Overlay](https://apis.io/overlays/bureau-of-transportation-statistics/bureau-of-transportation-statistics-resource-api-overlay/)
 
-- Federal Government
-- Transportation
-- Aviation
-- Statistics
+#### Security (3)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Portal](https://www.transtats.bts.gov/)
-- [Tool](https://www.transtats.bts.gov/ONTIME/)
-- [Postman Collection](collections/bureau-of-transportation-statistics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bureau-of-transportation-statistics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bureau Of Transportation Statistics Authentication](https://apis.io/security/bureau-of-transportation-statistics/bureau-of-transportation-statistics-authentication/)
+- [Bureau Of Transportation Statistics Domain Security](https://apis.io/security/bureau-of-transportation-statistics/bureau-of-transportation-statistics-domain-security/)
+- [Bureau Of Transportation Statistics Vulnerability Disclosure](https://apis.io/security/bureau-of-transportation-statistics/bureau-of-transportation-statistics-vulnerability-disclosure/)
 
-### BTS Freight Analysis Framework (FAF)
+#### Plans and pricing (1)
 
-The Freight Analysis Framework integrates data from multiple sources to create a comprehensive picture of freight flows to, from, within, and through the United States. Includes volume, value, and mode of shipment data for domestic and international freight.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://www.bts.gov/faf](https://www.bts.gov/faf)
+- [Bureau Of Transportation Statistics Plans Pricing](https://apis.io/plans/bureau-of-transportation-statistics/bureau-of-transportation-statistics-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Federal Government
-- Freight
-- Transportation
-- Statistics
+Published request limits.
 
-#### Properties
+- [Bureau Of Transportation Statistics Rate Limits](https://apis.io/rate-limits/bureau-of-transportation-statistics/bureau-of-transportation-statistics-rate-limits/)
 
-- [Documentation](https://www.bts.gov/faf)
-- [Postman Collection](collections/bureau-of-transportation-statistics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bureau-of-transportation-statistics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-## Common Properties
+What the API costs to run, by operation.
 
-- [GitHub Organization](https://github.com/dotbts)
-- [LinkedIn](https://www.linkedin.com/company/bureau-of-transportation-statistics-bts)
+- [Bureau Of Transportation Statistics Finops](https://apis.io/finops/bureau-of-transportation-statistics/bureau-of-transportation-statistics-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.bts.gov)
-- [Portal](https://data.bts.gov/)
-- [Privacy Policy](https://www.bts.gov/privacy-policy)
-- [Tran Stats](https://www.transtats.bts.gov/)
-- [Data  Portal](https://catalog.data.gov/dataset?organization=dot-gov&q=bts)
+- [Documentation](https://dev.socrata.com/)
+- [Getting started](https://dev.socrata.com/consumers/getting-started.html)
+- [API reference](https://dev.socrata.com/docs/endpoints.html)
+- [Sign up](https://data.bts.gov/signup)
+- [Support](https://www.bts.gov/learn-about-bts-and-our-work/contact-us)
+- [Blog](https://www.bts.gov/newsroom)
+- [Security](https://www.transportation.gov/vulnerability-disclosure-policy)
+- [Privacy policy](https://www.transportation.gov/privacy)
+- [GitHub](https://github.com/dotbts)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 41.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 23.7 |
+
+**Agent readiness 32.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bureau-of-transportation-statistics/](https://apis.io/providers/bureau-of-transportation-statistics/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bureau of Transportation Statistics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bureau-of-transportation-statistics/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
